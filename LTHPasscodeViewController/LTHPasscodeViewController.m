@@ -5,9 +5,11 @@
 //  Created by Roland Leth on 9/6/13.
 //  Copyright (c) 2013 Roland Leth. All rights reserved.
 //
-//TEST
+
 #import "LTHPasscodeViewController.h"
 #import "SFHFKeychainUtils.h"
+#import <JFBCrypt.h>
+
 
 static NSString *const kKeychainUsername = @"demoPasscode";
 static NSString *const kKeychainTimerStart = @"demoPasscodeTimerStart";
@@ -33,16 +35,16 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 #define kModifierForBottomVerticalGap (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 2.6f : 3.0f)
 // Text Sizes
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-	#define kPasscodeCharWidth [kPasscodeCharacter sizeWithAttributes: @{NSFontAttributeName : kPasscodeFont}].width
-	#define kFailedAttemptLabelWidth (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? [_failedAttemptLabel.text sizeWithAttributes: @{NSFontAttributeName : kLabelFont}].width + 60.0f : [_failedAttemptLabel.text sizeWithAttributes: @{NSFontAttributeName : kLabelFont}].width + 30.0f)
-	#define kFailedAttemptLabelHeight [_failedAttemptLabel.text sizeWithAttributes: @{NSFontAttributeName : kLabelFont}].height
-	#define kEnterPasscodeLabelWidth [_enterPasscodeLabel.text sizeWithAttributes: @{NSFontAttributeName : kLabelFont}].width
+#define kPasscodeCharWidth [kPasscodeCharacter sizeWithAttributes: @{NSFontAttributeName : kPasscodeFont}].width
+#define kFailedAttemptLabelWidth (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? [_failedAttemptLabel.text sizeWithAttributes: @{NSFontAttributeName : kLabelFont}].width + 60.0f : [_failedAttemptLabel.text sizeWithAttributes: @{NSFontAttributeName : kLabelFont}].width + 30.0f)
+#define kFailedAttemptLabelHeight [_failedAttemptLabel.text sizeWithAttributes: @{NSFontAttributeName : kLabelFont}].height
+#define kEnterPasscodeLabelWidth [_enterPasscodeLabel.text sizeWithAttributes: @{NSFontAttributeName : kLabelFont}].width
 #else
 // Thanks to Kent Nguyen - https://github.com/kentnguyen
-	#define kPasscodeCharWidth [kPasscodeCharacter sizeWithFont:kPasscodeFont].width
-	#define kFailedAttemptLabelWidth (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? [_failedAttemptLabel.text sizeWithFont:kLabelFont].width + 60.0f : [_failedAttemptLabel.text sizeWithFont:kLabelFont].width + 30.0f)
-	#define kFailedAttemptLabelHeight [_failedAttemptLabel.text sizeWithFont:kLabelFont].height
-	#define kEnterPasscodeLabelWidth [_enterPasscodeLabel.text sizeWithFont:kLabelFont].width
+#define kPasscodeCharWidth [kPasscodeCharacter sizeWithFont:kPasscodeFont].width
+#define kFailedAttemptLabelWidth (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? [_failedAttemptLabel.text sizeWithFont:kLabelFont].width + 60.0f : [_failedAttemptLabel.text sizeWithFont:kLabelFont].width + 30.0f)
+#define kFailedAttemptLabelHeight [_failedAttemptLabel.text sizeWithFont:kLabelFont].height
+#define kEnterPasscodeLabelWidth [_enterPasscodeLabel.text sizeWithFont:kLabelFont].width
 #endif
 // Backgrounds
 #define kEnterPasscodeLabelBackgroundColor [UIColor clearColor]
@@ -147,7 +149,7 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
     [super viewDidLoad];
 	
 	self.view.backgroundColor = kBackgroundColor;
-
+    
 	_failedAttempts = 0;
 	_animatingView = [[UIView alloc] initWithFrame: self.view.frame];
 	[self.view addSubview: _animatingView];
@@ -366,9 +368,9 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 	if ([self.delegate respondsToSelector: @selector(passcodeViewControllerWasDismissed)])
 		[self.delegate performSelector: @selector(passcodeViewControllerWasDismissed)];
 	// Or, if you prefer by notifications:
-//	[[NSNotificationCenter defaultCenter] postNotificationName: @"dismissPasscodeViewController"
-//														object: self
-//													  userInfo: nil];
+    //	[[NSNotificationCenter defaultCenter] postNotificationName: @"dismissPasscodeViewController"
+    //														object: self
+    //													  userInfo: nil];
 	[self dismissViewControllerAnimated: YES completion: nil];
 }
 
@@ -410,9 +412,9 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 		if ([self.delegate respondsToSelector: @selector(passcodeViewControllerWasDismissed)])
 			[self.delegate performSelector: @selector(passcodeViewControllerWasDismissed)];
 		// Or, if you prefer by notifications:
-//		[[NSNotificationCenter defaultCenter] postNotificationName: @"dismissPasscodeViewController"
-//															object: self
-//														  userInfo: nil];
+        //		[[NSNotificationCenter defaultCenter] postNotificationName: @"dismissPasscodeViewController"
+        //															object: self
+        //														  userInfo: nil];
 		if (_beingDisplayedAsLockScreen) {
 			[self.view removeFromSuperview];
 			[self removeFromParentViewController];
@@ -420,6 +422,10 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 		else {
 			[self dismissViewControllerAnimated: YES completion: nil];
 		}
+        if ([self.delegate respondsToSelector: @selector(passcodeWasEnteredSuccessfully)])
+        {
+            [self.delegate performSelector: @selector(passcodeWasEnteredSuccessfully)];
+        }
 	}];
 	[[NSNotificationCenter defaultCenter] removeObserver: self
 													name: UIApplicationDidChangeStatusBarOrientationNotification
@@ -455,7 +461,7 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 		// Usually not more than one window is needed, but your needs may vary; modify below.
 		// Also, in case the control doesn't work properly,
 		// try it with .keyWindow before anything else, it might work.
-//		UIWindow *mainWindow = [UIApplication sharedApplication].keyWindow;
+        //		UIWindow *mainWindow = [UIApplication sharedApplication].keyWindow;
 		UIWindow *mainWindow = [UIApplication sharedApplication].windows[0];
 		[mainWindow addSubview: self.view];
 		[[NSNotificationCenter defaultCenter] addObserver:self
@@ -686,14 +692,20 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 		}
 		// App launch/Turning passcode off: Passcode OK -> dismiss, Passcode incorrect -> deny access.
 		else {
-			if ([typedString isEqualToString: savedPasscode]) {
-                if ([self.delegate respondsToSelector: @selector(passcodeWasEnteredSuccessfully)])
-                    [self.delegate performSelector: @selector(passcodeWasEnteredSuccessfully)];
-                // Or, if you prefer by notifications:
-//                	[[NSNotificationCenter defaultCenter] postNotificationName: @"passcodeWasEnteredSuccessfully"
-//                														object: self
-//                													  userInfo: nil];
+            NSString *hashedPwd = [JFBCrypt hashPassword:typedString withSalt:@"$2a$10$PKWkg1hrPqpc.6uazbIm0."];
+            NSLog(@"HASH: %@",hashedPwd);
+            NSLog(@"SAVED: %@",savedPasscode);
+			if ([hashedPwd isEqualToString: savedPasscode]) {
                 [self dismissMe];
+                //                if ([self.delegate respondsToSelector: @selector(passcodeWasEnteredSuccessfully)])
+                //                {
+                //                    [self.delegate performSelector: @selector(passcodeWasEnteredSuccessfully)];
+                //                }
+                // Or, if you prefer by notifications:
+                //                	[[NSNotificationCenter defaultCenter] postNotificationName: @"passcodeWasEnteredSuccessfully"
+                //                														object: self
+                //                													  userInfo: nil];
+                
             }
 			else {
 				[self performSelector: @selector(denyAccess) withObject: nil afterDelay: 0.15f];
@@ -818,10 +830,10 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 		_failedAttempts == kMaxNumberOfAllowedFailedAttempts &&
 		[self.delegate respondsToSelector: @selector(maxNumberOfFailedAttemptsReached)])
 		[self.delegate maxNumberOfFailedAttemptsReached];
-//	Or, if you prefer by notifications:
-//	[[NSNotificationCenter defaultCenter] postNotificationName: @"maxNumberOfFailedAttemptsReached"
-//														object: self
-//													  userInfo: nil];
+    //	Or, if you prefer by notifications:
+    //	[[NSNotificationCenter defaultCenter] postNotificationName: @"maxNumberOfFailedAttemptsReached"
+    //														object: self
+    //													  userInfo: nil];
 	
 	if (_failedAttempts == 1) _failedAttemptLabel.text = NSLocalizedString(@"1 Passcode Failed Attempt", @"");
 	else {
@@ -896,8 +908,8 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 	if (self) {
 		
 		// Set default username & service name for passcode
-		[[NSUserDefaults standardUserDefaults] setObject:kKeychainUsername forKey:kKeychainUsername];
-		[[NSUserDefaults standardUserDefaults] setObject:kKeychainServiceName forKey:kKeychainServiceName];
+		//[[NSUserDefaults standardUserDefaults] setObject:kKeychainUsername forKey:kKeychainUsername];
+		//[[NSUserDefaults standardUserDefaults] setObject:kKeychainServiceName forKey:kKeychainServiceName];
 		
 		[[NSNotificationCenter defaultCenter] addObserver: self
 												 selector: @selector(applicationDidEnterBackground)
@@ -936,6 +948,7 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 	if (serviceName.length > 0) {
 		[[NSUserDefaults standardUserDefaults] setObject:serviceName forKey:kKeychainServiceName];
 	}
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
