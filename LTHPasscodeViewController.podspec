@@ -14,7 +14,8 @@ Pod::Spec.new do |s|
     :git => "https://github.com/rolandleth/LTHPasscodeViewController.git", 
     :tag => "1.6.5" 
   }
-  s.source_files  = 'LTHPasscodeViewController', 'LTHPasscodeViewController/*.{h,m}','NumPadTextField/*.*'
+  s.source_files  = 'LTHPasscodeViewController', 'LTHPasscodeViewController/*.{h,m}','NumPadTextField/*.{h,m}'
+  s.resources = ["NumPadTextField/*.xib", "NumPadTextField/Resource/*.png"]
   s.requires_arc = true
   s.frameworks = 'QuartzCore'
 end
