@@ -18,12 +18,12 @@
 		2AF19593182C09D5005CE38A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF19588182C09D5005CE38A /* Localizable.strings */; };
 		2AF19595182C09D5005CE38A /* LTHPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1958F182C09D5005CE38A /* LTHPasscodeViewController.m */; };
 		2AF19596182C09D5005CE38A /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF19592182C09D5005CE38A /* SFHFKeychainUtils.m */; };
-		C6EB8BC918FFE2DE00C92E16 /* NumericKeypad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EB8BBE18FFE2DE00C92E16 /* NumericKeypad.xib */; };
-		C6EB8BCA18FFE2DE00C92E16 /* NumericKeypadTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EB8BC118FFE2DE00C92E16 /* NumericKeypadTextField.m */; };
-		C6EB8BCB18FFE2DE00C92E16 /* NumericKeypadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EB8BC318FFE2DE00C92E16 /* NumericKeypadView.m */; };
-		C6EB8BCC18FFE2DE00C92E16 /* NumericKeypadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EB8BC518FFE2DE00C92E16 /* NumericKeypadViewController.m */; };
-		C6EB8BCD18FFE2DE00C92E16 /* highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = C6EB8BC718FFE2DE00C92E16 /* highlight.png */; };
-		C6EB8BCE18FFE2DE00C92E16 /* normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C6EB8BC818FFE2DE00C92E16 /* normal.png */; };
+		C6EB8BDB1900002D00C92E16 /* NumericKeypad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EB8BD01900002D00C92E16 /* NumericKeypad.xib */; };
+		C6EB8BDC1900002D00C92E16 /* NumericKeypadTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EB8BD31900002D00C92E16 /* NumericKeypadTextField.m */; };
+		C6EB8BDD1900002D00C92E16 /* NumericKeypadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EB8BD51900002D00C92E16 /* NumericKeypadView.m */; };
+		C6EB8BDE1900002D00C92E16 /* NumericKeypadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EB8BD71900002D00C92E16 /* NumericKeypadViewController.m */; };
+		C6EB8BDF1900002D00C92E16 /* highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = C6EB8BD91900002D00C92E16 /* highlight.png */; };
+		C6EB8BE01900002D00C92E16 /* normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C6EB8BDA1900002D00C92E16 /* normal.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,16 +49,16 @@
 		2AF19591182C09D5005CE38A /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		2AF19592182C09D5005CE38A /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		2AF4E8391848F9FE00AB18EE /* LTHPasscodeViewController Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LTHPasscodeViewController Demo-Info.plist"; sourceTree = "<group>"; };
-		C6EB8BBE18FFE2DE00C92E16 /* NumericKeypad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumericKeypad.xib; sourceTree = "<group>"; };
-		C6EB8BBF18FFE2DE00C92E16 /* NumericKeypadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericKeypadDelegate.h; sourceTree = "<group>"; };
-		C6EB8BC018FFE2DE00C92E16 /* NumericKeypadTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericKeypadTextField.h; sourceTree = "<group>"; };
-		C6EB8BC118FFE2DE00C92E16 /* NumericKeypadTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericKeypadTextField.m; sourceTree = "<group>"; };
-		C6EB8BC218FFE2DE00C92E16 /* NumericKeypadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericKeypadView.h; sourceTree = "<group>"; };
-		C6EB8BC318FFE2DE00C92E16 /* NumericKeypadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericKeypadView.m; sourceTree = "<group>"; };
-		C6EB8BC418FFE2DE00C92E16 /* NumericKeypadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericKeypadViewController.h; sourceTree = "<group>"; };
-		C6EB8BC518FFE2DE00C92E16 /* NumericKeypadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericKeypadViewController.m; sourceTree = "<group>"; };
-		C6EB8BC718FFE2DE00C92E16 /* highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highlight.png; sourceTree = "<group>"; };
-		C6EB8BC818FFE2DE00C92E16 /* normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal.png; sourceTree = "<group>"; };
+		C6EB8BD01900002D00C92E16 /* NumericKeypad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumericKeypad.xib; sourceTree = "<group>"; };
+		C6EB8BD11900002D00C92E16 /* NumericKeypadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericKeypadDelegate.h; sourceTree = "<group>"; };
+		C6EB8BD21900002D00C92E16 /* NumericKeypadTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericKeypadTextField.h; sourceTree = "<group>"; };
+		C6EB8BD31900002D00C92E16 /* NumericKeypadTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericKeypadTextField.m; sourceTree = "<group>"; };
+		C6EB8BD41900002D00C92E16 /* NumericKeypadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericKeypadView.h; sourceTree = "<group>"; };
+		C6EB8BD51900002D00C92E16 /* NumericKeypadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericKeypadView.m; sourceTree = "<group>"; };
+		C6EB8BD61900002D00C92E16 /* NumericKeypadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericKeypadViewController.h; sourceTree = "<group>"; };
+		C6EB8BD71900002D00C92E16 /* NumericKeypadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericKeypadViewController.m; sourceTree = "<group>"; };
+		C6EB8BD91900002D00C92E16 /* highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highlight.png; sourceTree = "<group>"; };
+		C6EB8BDA1900002D00C92E16 /* normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +97,6 @@
 		2AE8000F17D9503000DBDE63 /* LTHPasscodeViewController Demo */ = {
 			isa = PBXGroup;
 			children = (
-				C6EB8BBD18FFE2DE00C92E16 /* NumPadTextField */,
 				2AF19587182C09D5005CE38A /* LTHPasscodeViewController */,
 				2AE8001817D9503000DBDE63 /* LTHAppDelegate.h */,
 				2AE8001917D9503000DBDE63 /* LTHAppDelegate.m */,
@@ -132,6 +131,7 @@
 		2AF19587182C09D5005CE38A /* LTHPasscodeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C6EB8BCF1900002C00C92E16 /* NumPadTextField */,
 				2AF19588182C09D5005CE38A /* Localizable.strings */,
 				2AF1958E182C09D5005CE38A /* LTHPasscodeViewController.h */,
 				2AF1958F182C09D5005CE38A /* LTHPasscodeViewController.m */,
@@ -142,27 +142,28 @@
 			path = ../../LTHPasscodeViewController;
 			sourceTree = "<group>";
 		};
-		C6EB8BBD18FFE2DE00C92E16 /* NumPadTextField */ = {
+		C6EB8BCF1900002C00C92E16 /* NumPadTextField */ = {
 			isa = PBXGroup;
 			children = (
-				C6EB8BBE18FFE2DE00C92E16 /* NumericKeypad.xib */,
-				C6EB8BBF18FFE2DE00C92E16 /* NumericKeypadDelegate.h */,
-				C6EB8BC018FFE2DE00C92E16 /* NumericKeypadTextField.h */,
-				C6EB8BC118FFE2DE00C92E16 /* NumericKeypadTextField.m */,
-				C6EB8BC218FFE2DE00C92E16 /* NumericKeypadView.h */,
-				C6EB8BC318FFE2DE00C92E16 /* NumericKeypadView.m */,
-				C6EB8BC418FFE2DE00C92E16 /* NumericKeypadViewController.h */,
-				C6EB8BC518FFE2DE00C92E16 /* NumericKeypadViewController.m */,
-				C6EB8BC618FFE2DE00C92E16 /* Resource */,
+				C6EB8BD01900002D00C92E16 /* NumericKeypad.xib */,
+				C6EB8BD11900002D00C92E16 /* NumericKeypadDelegate.h */,
+				C6EB8BD21900002D00C92E16 /* NumericKeypadTextField.h */,
+				C6EB8BD31900002D00C92E16 /* NumericKeypadTextField.m */,
+				C6EB8BD41900002D00C92E16 /* NumericKeypadView.h */,
+				C6EB8BD51900002D00C92E16 /* NumericKeypadView.m */,
+				C6EB8BD61900002D00C92E16 /* NumericKeypadViewController.h */,
+				C6EB8BD71900002D00C92E16 /* NumericKeypadViewController.m */,
+				C6EB8BD81900002D00C92E16 /* Resource */,
 			);
-			path = NumPadTextField;
+			name = NumPadTextField;
+			path = ../NumPadTextField;
 			sourceTree = "<group>";
 		};
-		C6EB8BC618FFE2DE00C92E16 /* Resource */ = {
+		C6EB8BD81900002D00C92E16 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C6EB8BC718FFE2DE00C92E16 /* highlight.png */,
-				C6EB8BC818FFE2DE00C92E16 /* normal.png */,
+				C6EB8BD91900002D00C92E16 /* highlight.png */,
+				C6EB8BDA1900002D00C92E16 /* normal.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -222,12 +223,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6EB8BCE18FFE2DE00C92E16 /* normal.png in Resources */,
+				C6EB8BE01900002D00C92E16 /* normal.png in Resources */,
 				2AE8001417D9503000DBDE63 /* InfoPlist.strings in Resources */,
 				2AF19593182C09D5005CE38A /* Localizable.strings in Resources */,
 				2AE8001C17D9503000DBDE63 /* Images.xcassets in Resources */,
-				C6EB8BC918FFE2DE00C92E16 /* NumericKeypad.xib in Resources */,
-				C6EB8BCD18FFE2DE00C92E16 /* highlight.png in Resources */,
+				C6EB8BDB1900002D00C92E16 /* NumericKeypad.xib in Resources */,
+				C6EB8BDF1900002D00C92E16 /* highlight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,14 +239,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6EB8BCC18FFE2DE00C92E16 /* NumericKeypadViewController.m in Sources */,
+				C6EB8BDE1900002D00C92E16 /* NumericKeypadViewController.m in Sources */,
 				2AE8001617D9503000DBDE63 /* main.m in Sources */,
 				2AE8004117D9507E00DBDE63 /* LTHDemoViewController.m in Sources */,
 				2AF19596182C09D5005CE38A /* SFHFKeychainUtils.m in Sources */,
-				C6EB8BCA18FFE2DE00C92E16 /* NumericKeypadTextField.m in Sources */,
+				C6EB8BDC1900002D00C92E16 /* NumericKeypadTextField.m in Sources */,
 				2AE8001A17D9503000DBDE63 /* LTHAppDelegate.m in Sources */,
 				2AF19595182C09D5005CE38A /* LTHPasscodeViewController.m in Sources */,
-				C6EB8BCB18FFE2DE00C92E16 /* NumericKeypadView.m in Sources */,
+				C6EB8BDD1900002D00C92E16 /* NumericKeypadView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
