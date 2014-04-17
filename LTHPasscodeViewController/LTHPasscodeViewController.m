@@ -9,6 +9,7 @@
 #import "LTHPasscodeViewController.h"
 #import "SFHFKeychainUtils.h"
 #import <JFBCrypt.h>
+#import "NumericKeypadTextField.h"
 
 
 static NSString *const kKeychainUsername = @"demoPasscode";
@@ -66,7 +67,7 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 	UITextField *_secondDigitTextField;
 	UITextField *_thirdDigitTextField;
 	UITextField *_fourthDigitTextField;
-	UITextField *_passcodeTextField;
+	NumericKeypadTextField *_passcodeTextField;
 	UILabel *_failedAttemptLabel;
 	UILabel *_enterPasscodeLabel;
 	int _failedAttempts;
@@ -214,8 +215,19 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
     [_fourthDigitTextField setBorderStyle:UITextBorderStyleNone];
 	_fourthDigitTextField.userInteractionEnabled = NO;
     [_animatingView addSubview:_fourthDigitTextField];
-	
-	_passcodeTextField = [[UITextField alloc] initWithFrame: CGRectZero];
+    
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        _passcodeTextField = (NumericKeypadTextField *)[[UITextField alloc] initWithFrame: CGRectZero];
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        _passcodeTextField = [[NumericKeypadTextField alloc] init];
+        _passcodeTextField.numericKeypadDelegate = self;// delegate for saveActionFormTextField
+        _passcodeTextField.placeholder = @"NUMPAD";
+        _passcodeTextField.font = [UIFont systemFontOfSize:40];
+        _passcodeTextField.frame = CGRectMake(50, 50, 200, 40);
+    }
+    
 	_passcodeTextField.hidden = YES;
 	_passcodeTextField.delegate = self;
 	_passcodeTextField.keyboardType = UIKeyboardTypeNumberPad;
