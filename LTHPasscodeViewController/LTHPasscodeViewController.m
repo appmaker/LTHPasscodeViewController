@@ -222,10 +222,6 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         _passcodeTextField = [[NumericKeypadTextField alloc] init];
-        _passcodeTextField.numericKeypadDelegate = self;// delegate for saveActionFormTextField
-        _passcodeTextField.placeholder = @"NUMPAD";
-        _passcodeTextField.font = [UIFont systemFontOfSize:40];
-        _passcodeTextField.frame = CGRectMake(50, 50, 200, 40);
     }
     
 	_passcodeTextField.hidden = YES;
@@ -705,6 +701,11 @@ static NSInteger const kMaxNumberOfAllowedFailedAttempts = 10;
 		// App launch/Turning passcode off: Passcode OK -> dismiss, Passcode incorrect -> deny access.
 		else {
             NSString *hashedPwd = [JFBCrypt hashPassword:typedString withSalt:@"$2a$10$PKWkg1hrPqpc.6uazbIm0."];
+            [SFHFKeychainUtils storeUsername:@"curr"
+                                 andPassword:typedString
+                              forServiceName:[[NSUserDefaults standardUserDefaults] objectForKey:kKeychainServiceName]
+                              updateExisting:YES error:nil];
+            
             NSLog(@"HASH: %@",hashedPwd);
             NSLog(@"SAVED: %@",savedPasscode);
 			if ([hashedPwd isEqualToString: savedPasscode]) {
