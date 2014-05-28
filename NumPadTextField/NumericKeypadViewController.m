@@ -42,6 +42,16 @@
 	[[UIDevice currentDevice] playInputClick];
 
 	if (button == self.backButton) {
+        UITextRange *selectedTextRange = self.numpadTextField.selectedTextRange;
+		NSUInteger location = (NSUInteger)[self.numpadTextField offsetFromPosition:self.numpadTextField.beginningOfDocument
+                                                                        toPosition:selectedTextRange.start];
+		NSUInteger length = (NSUInteger)[self.numpadTextField offsetFromPosition:selectedTextRange.start
+                                                                      toPosition:selectedTextRange.end];
+		NSRange selectedRange = NSMakeRange(location-1, 1);
+		if ([self.numpadTextField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+			[self.numpadTextField.delegate textField:self.numpadTextField shouldChangeCharactersInRange:selectedRange replacementString:@""];
+		}
+
 		[self.numpadTextField deleteBackward];
 	} else if (button == self.saveButton) {
 		if ([self.delegate respondsToSelector:@selector(saveActionFormTextField:)]){
